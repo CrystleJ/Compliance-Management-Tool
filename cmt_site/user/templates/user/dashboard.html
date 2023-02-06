@@ -1,0 +1,84 @@
+{% extends 'user/base.html' %}
+{% load static %}
+
+{% block title %}DASHBOARD{% endblock %}
+
+{% block content %}
+<!-- SEARCH BAR: https://bootsnipp.com/snippets/GaeQR -->
+<div class="container h-100">
+  <div class="d-flex justify-content-center h-100">
+    <div class="searchbar">
+      <input class="search_input" type="text" name="" placeholder="Search...">
+      <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
+    </div>
+  </div>
+</div>
+<br><br>
+
+<!-- BAR CHART -->
+<div id="container" style="width: 75%;">
+   <canvas id="population-chart" data-url="{% url 'population-chart' %}"></canvas>
+</div>
+
+<!-- GROUP PAGE LINKS-->
+<div class="link_group">
+  <button type="button" class="btn btn-square-md group_btn">Enterprise Shared Services</button>
+  <button type="button" class="btn btn-square-md group_btn">Product Sector - Networks</button>
+  <button type="button" class="btn btn-square-md group_btn">Product Sector - Big Data</button>
+  <button type="button" class="btn btn-square-md group_btn">R&D</button>
+</div>
+
+
+
+<!-- SCRIPTS -->
+
+<!-- <script src="{% static 'js/search.js' %}"></script> -->
+<script>
+  const searchButton = document.getElementById('search-button-dash');
+  const searchInput = document.getElementById('search-input-dash');
+  searchButton.addEventListener('click', () => {
+    const inputValue = searchInput.value;
+    alert(inputValue);
+  });
+</script>
+<script>
+
+  $(function () {
+
+    var $populationChart = $("#population-chart");
+    $.ajax({
+      url: $populationChart.data("url"),
+      success: function (data) {
+
+        var ctx = $populationChart[0].getContext("2d");
+
+        new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: data.labels,
+            datasets: [{
+              label: 'Compliance',
+              backgroundColor: '#2b49e2cc',
+              data: data.data
+            }]          
+          },
+          options: {
+            responsive: true,
+            legend: {
+              position: 'top',
+            },
+            title: {
+              display: true,
+              text: 'Organization Compliance Report'
+            }
+          }
+        });
+
+      }
+    });
+
+  });
+
+</script>
+
+{% endblock %}

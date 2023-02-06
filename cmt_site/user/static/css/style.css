@@ -1,0 +1,121 @@
+.theme-color {
+    background-color: #2b49e2cc;
+}
+
+input:focus, input:active{
+    outline: 1px solid #2b49e2cc;
+}
+
+main {
+    margin-top: 50px;
+    padding: 50px
+}
+
+#login {
+    padding: 30px;
+    margin-top: 50px;
+    width: 25%;
+    height: 25%;
+    border: 1px solid #2b49e2cc;
+    border-radius: 3pt;
+}
+
+.brand {
+    color: white;
+}
+
+.btn-theme-color-opp {
+    background-color: white;
+    color: #2b49e2cc;
+    border-color: white;
+    font-weight: 500;
+}
+
+.btn-theme-color-opp:hover {
+    background-color: lightseagreen;
+    color: white;
+    border-color: white;
+}
+
+.btn-theme-color {
+    background-color: #2b49e2cc;
+    color: white;
+    border-color: white;
+}
+
+.btn-theme-color:hover {
+    background-color: white;
+    color: #2b49e2cc;
+    border-color: #2b49e2cc;
+}
+
+.btn-square-md {
+    width: 300px !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    height: 300px !important;
+    font-size:24px;
+    background-color: #f7f7f7;
+    border: none;
+    color:#2b49e2cc;
+}
+
+.btn-square-md:hover {
+    background-color: lightseagreen;
+    border: none;
+    color: white;
+}
+
+.searchbar{
+    margin-bottom: auto;
+    margin-top: auto;
+    height: 40px;
+    background-color: whitesmoke;
+    border-radius: 20px;
+    padding: 7px 15px;
+    width: 50%;
+}
+
+.searchbar:has(>.search_input:hover),
+.searchbar:has(>.search_input:focus),
+.searchbar:has(>.search_input:active){
+    border: 1px solid #2b49e2cc;
+}
+
+.search_input{
+    color: black;
+    border: 0;
+    outline: 0;
+    background: none;
+    width: 95%;
+}
+
+.search_icon{
+    height: 25px;
+    width: 20px;
+    float: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    color:#2b49e2cc;
+    text-decoration:none;
+}
+
+.search_icon:hover {
+    text-decoration:none;
+    color: darkslategrey;
+}
+
+.link_group {
+    margin: 50px -50px;
+    padding:50px;
+    background: #2b49e2cc;   
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.group_btn {
+    margin: 20px;
+}
