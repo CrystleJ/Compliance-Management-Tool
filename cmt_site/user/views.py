@@ -7,7 +7,7 @@ from django.contrib.admin.views.decorators import staff_member_required
 from django.db.models import Count, F, Sum, Avg
 from django.db.models.functions import ExtractYear, ExtractMonth
 from django.http import JsonResponse
-from user.models import City
+from user.models import City, NIST_171_Controls, NIST_172_Controls, NIST_53_Controls
 
 
 # Create your views here.
@@ -27,6 +27,14 @@ def population_chart(request):
         'labels': labels,
         'data': data,
     })
+
+def get_controls(request):
+  mydata = NIST_53_Controls.objects.all().values()
+  template = loader.get_template('user/control_selection.html')
+  context = {
+    'controls': mydata,
+  }
+  return HttpResponse(template.render(context, request))
 
 # Charts
 # https://django-simple-charts.appseed.us/charts-file

@@ -11,24 +11,24 @@ class City(models.Model):
     population = models.PositiveIntegerField()
 
 class NIST_171_Controls(models.Model):
+    family = models.CharField(max_length=250, null=True, blank=True)
     control_id = models.CharField(max_length=30, primary_key=True)
-    family = models.CharField(max_length=100, null=True, blank=True)
     control_txt = models.TextField(null=True, blank=True)
     discussion = models.TextField(null=True, blank=True)
 
 class NIST_172_Controls(models.Model):
+    family = models.CharField(max_length=250, null=True, blank=True)
     control_id = models.CharField(max_length=30, primary_key=True)
-    family = models.CharField(max_length=100, null=True, blank=True)
     control_txt = models.TextField(null=True, blank=True)
     discussion = models.TextField(null=True, blank=True)
 
 class NIST_53_Controls(models.Model):
     control_name = models.CharField(max_length=200)
     control_id = models.CharField(max_length=30, primary_key=True)
-    control_txt = models.TextField()
-    discussion = models.TextField()
-    cmmc_level = models.PositiveIntegerField()
-    control_id_171 = models.ForeignKey(NIST_171_Controls, on_delete=models.CASCADE)
-    control_id_172 = models.ForeignKey(NIST_172_Controls, on_delete=models.CASCADE)
-    related_controls = models.CharField(max_length=200, null=True, blank=True)
-    applicable_systems = models.TextField()
+    control_txt = models.TextField(null=True)
+    discussion = models.TextField(null=True)
+    cmmc_level = models.PositiveIntegerField(null=True)
+    control_id_171 = models.TextField(null=True)
+    control_id_172 = models.TextField(null=True)
+    related_controls = models.TextField(null=True)
+    applicable_systems = models.TextField(null=True)

@@ -1,9 +1,11 @@
 {% extends 'user/base.html' %}
 {% load static %}
+{% load custom_tags %}
 
 {% block title %}CONTROL_SELECTION{% endblock %}
 
 {% block content %}
+<form>
 <table class="table">
     <thead class="thead-dark">
       <tr>
@@ -14,63 +16,32 @@
         <th scope="col">CMMC Level</th>
         <th scope="col">NIST 800-171 Control</th>
         <th scope="col">NIST 800-172 Control</th>
+        <th scope="col">Related Controls</th>
         <th scope="col">Applicable Systems</th>
         <th scope="col">Recommended</th>
         <th scope="col">Select</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td>Larry</td>
-        <td>the Bird</td>
-        <td>@twitter</td>
-      </tr>
+    {% for x in controls %}
+        <tr>
+            <td>{{ x.control_name }}</td>
+            <td>{{ x.control_id }}</td>
+            <td>{{ x.control_txt }}</td>
+            <td>{{ x.discussion }}</td>
+            <td>{{ x.cmmc_level }}</td>
+            <td>{{ x.control_id_171 }}</td>
+            <td>{{ x.control_id_172 }}</td>
+            <td>{{ x.related_controls }}</td>
+            <td>{{ x.applicable_systems|semi_colon_space}}</td>
+            
+            <td>YES</td>
+            <td><input type="checkbox" checked></td>
+        </tr>
+    {% endfor %}
     </tbody>
 </table>
-
-<table class="table">
-    <thead class="thead-light">
-    <tr>
-        <th scope="col">#</th>
-        <th scope="col">First</th>
-        <th scope="col">Last</th>
-        <th scope="col">Handle</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-    </tr>
-    <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-    </tr>
-    <tr>
-        <th scope="row">3</th>
-        <td>Larry</td>
-        <td>the Bird</td>
-        <td>@twitter</td>
-    </tr>
-    </tbody>
-</table>
-
+<button class="btn btn-success btn-theme-color">SUBMIT</button>
+</form>
 
 {% endblock %}
