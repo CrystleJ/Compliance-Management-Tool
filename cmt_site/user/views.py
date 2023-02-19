@@ -30,10 +30,11 @@ def population_chart(request):
     })
 
 def get_controls(request):
-  mydata = NIST_53_Controls.objects.all().values()
+  control_data = NIST_53_Controls.objects.all().values()
   template = loader.get_template('user/control_selection.html')
+
   context = {
-    'controls': mydata,
+    'controls': control_data,
   }
   return HttpResponse(template.render(context, request))
 

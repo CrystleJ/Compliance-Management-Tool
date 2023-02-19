@@ -123,3 +123,8 @@ main {
 label {
     display: block;
 }
+
+.guidance-modal-label {
+    font-weight: bold;
+    margin-bottom: 0;
+}

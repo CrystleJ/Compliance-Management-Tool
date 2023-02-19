@@ -5,6 +5,10 @@
 {% block title %}CONTROL_SELECTION{% endblock %}
 
 {% block content %}
+
+{% block scripts %}
+  <script src="{% static 'js/control_guidance.js' %}"></script>
+{% endblock %}
 <form>
 <table class="table">
     <thead class="thead-dark">
@@ -35,8 +39,10 @@
             <td>{{ x.related_controls }}</td>
             <td>{{ x.applicable_systems|semi_colon_space}}</td>
             
-            <td>YES</td>
-            <td><input type="checkbox" checked></td>
+            <td>{%get_recommendation x.cmmc_level x.applicable_systems %}</td>
+            <td>
+              <button type="button" class="btn btn-success btn-theme-color open-my-modal" id="add_guidance" data-toggle="modal" data-target="#guidance_modal" 
+              data-control-id="{{ x.control_id }}" data-control-txt="{{ x.control_txt }}" data-discussion="{{ x.discussion }}" onclick="set_values(this)">ADD</button></td>
         </tr>
     {% endfor %}
     </tbody>
@@ -44,4 +50,36 @@
 <button class="btn btn-success btn-theme-color">SUBMIT</button>
 </form>
 
+<div class="container">
+  <div class="modal" id="guidance_modal">
+    <div class="modal-dialog" style="max-width: 1000px;">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h4 class="modal-title">Add Guidance</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <div class="modal-body">
+          <span class="guidance-modal-label">Control ID:</span>
+          <span id="modal_control_id"></span><br><br>
+          <p class="guidance-modal-label">Control Text: </p>
+          <p id="modal_control_txt"></p>
+          <p class="guidance-modal-label">Discussion: </p>
+          <p id="modal_discussion"></p>
+          <form>
+            <label class="guidance-modal-label">Company Guidance: </label><br>
+            <textarea id="guidance" name="guidance" rows="12" cols="120"></textarea>
+          </form>
+        </div>
+        
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success btn-theme-color" data-dismiss="modal">SAVE</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  
+</div>
 {% endblock %}
