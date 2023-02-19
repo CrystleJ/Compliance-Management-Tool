@@ -1,14 +1,15 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
+from django.views.generic.edit import CreateView
 import os, json
 
 from django.contrib.admin.views.decorators import staff_member_required
 from django.db.models import Count, F, Sum, Avg
 from django.db.models.functions import ExtractYear, ExtractMonth
 from django.http import JsonResponse
-from user.models import City, NIST_171_Controls, NIST_172_Controls, NIST_53_Controls
-
+from user.models import *
+from user.forms import CreateCompanyProfileForm
 
 # Create your views here.
 # def dashboard(request):
@@ -35,6 +36,13 @@ def get_controls(request):
     'controls': mydata,
   }
   return HttpResponse(template.render(context, request))
+
+def create_company_profile(request):
+  form = CreateCompanyProfileForm(request.POST or None)
+  if form.is_valid():
+      instance = form.save(commit=False)
+      instance.save()
+  return render(request,'user/create_profile.html',{'form':form})
 
 # Charts
 # https://django-simple-charts.appseed.us/charts-file

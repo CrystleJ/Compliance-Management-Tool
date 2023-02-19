@@ -1,0 +1,22 @@
+{% extends 'user/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% load custom_tags %}
+
+{% block title %}CONTROL_SELECTION{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-center container" id="login">
+    <div class="row">
+        <form method="post" class="form-group">
+            {% csrf_token %}
+            {{form|crispy}}
+            <br>
+            <div class="text-right">
+              <button type="button" class="btn btn-success btn-theme-color" onclick="location.href='control_selection'">SUBMIT</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

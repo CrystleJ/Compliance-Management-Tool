@@ -119,3 +119,7 @@ main {
 .group_btn {
     margin: 20px;
 }
+
+label {
+    display: block;
+}

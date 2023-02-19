@@ -5,6 +5,7 @@ from django.views.generic.base import TemplateView
 urlpatterns = [
     path('', TemplateView.as_view(template_name='user/dashboard.html'), name='dashboard'),
     path('dashboard', TemplateView.as_view(template_name='user/dashboard.html'), name='dashboard'),
+    path('create_profile', views.create_company_profile, name='create_profile'),
     path('control_selection', views.get_controls, name='control_selection'),
     path('settings', TemplateView.as_view(template_name='user/settings.html'), name='settings'),
     path('setup', TemplateView.as_view(template_name='user/setup.html'), name='setup'),
