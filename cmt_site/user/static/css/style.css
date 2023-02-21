@@ -66,6 +66,15 @@ main {
     color: white;
 }
 
+.alt-color, .alt-color:hover, .alt-color:focus, .alt-color:active {
+    margin-left: -15px;
+    width: 102%;
+    background-color: lightseagreen;
+    color: white;
+    text-align: left;
+}
+
+
 .searchbar{
     margin-bottom: auto;
     margin-top: auto;
@@ -124,7 +133,38 @@ label {
     display: block;
 }
 
-.guidance-modal-label {
+.guidance-modal-label, .profile-label {
     font-weight: bold;
     margin-bottom: 0;
 }
+
+
+.system-compliance-profile {
+    width: 107%;
+}
+
+.system-data {
+    height: 850px;
+    margin: 5px;
+    background-color: #f1f1f1;
+}
+
+.profile-data-row {
+    padding-top: 2px;
+    height: 100%;
+    overflow: auto;
+    padding: 10px;
+}
+.system-control-data {
+    width: 100%;
+}
+
+select:hover, 
+input:hover,
+.system_controls_table:hover{
+    cursor: pointer;
+}
+
+/* table .scroll-y { height: 800px; overflow-y:scroll; display:block; }
+table .scroll-block { display:block; } */
+

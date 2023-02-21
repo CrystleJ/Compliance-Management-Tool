@@ -1,0 +1,134 @@
+{% extends 'user/base.html' %}
+{% load static %}
+{% load custom_tags %}
+
+{% block title %}CONTROL_SELECTION{% endblock %}
+
+
+{% block scripts %}
+  <script src="{% static 'js/list_systems.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<div>
+    <button id="server" class="btn btn-primary btn-lg btn-block alt-color" data-toggle="collapse" data-target="#collapseServer" type="button" onclick="collapse('server', 'SERVERS')">SERVERS
+        <!-- <span class="caret"></span> -->
+    </button>
+    <br>
+</div>
+<div id="collapseServer" class="collapse">
+<table class="table system-options">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">UID</th>
+            <th scope="col">Name</th>        
+            <th scope="col">Description</th>
+            <th scope="col">Status</th>
+            <th scope="col">Owner</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><a href="/system_compliance_profile">000110</a></td>
+            <td>SRV08990</td>
+            <td>Holds the TRNNQTPROD DB</td>
+            <td>ACTIVE</td>
+            <td>Jeffrey Wilkins</td>
+        </tr>       
+        <tr>
+            <td><a href="/system_compliance_profile">000111</a></td>
+            <td>SRV08991</td>
+            <td>Holds the QNTTCCPROD DB</td>
+            <td>ACTIVE</td>
+            <td>Jeffrey Wilkins</td>
+        </tr>          
+        <tr>
+            <td><a href="/system_compliance_profile">000234</a></td>
+            <td>SRV06782</td>
+            <td>Used by the Atlassian Jira</td>
+            <td>ACTIVE</td>
+            <td>Jeffrey Wilkins</td>
+        </tr>              
+        <tr>
+            <td><a href="/system_compliance_profile">000279</a></td>
+            <td>SRV06773</td>
+            <td>Used by the Atlassian Bitbucket</td>
+            <td>ACTIVE</td>
+            <td>Jeffrey Wilkins</td>
+        </tr>
+    </tbody>
+</table>
+</div>
+<br>
+<div>
+    <button id="application" class="btn btn-primary btn-lg btn-block alt-color" data-toggle="collapse" data-target="#collapseApplication" type="button" onclick="collapse('application', 'APPLICATIONS')">APPLICATIONS
+        <!-- <span class="caret"></span> -->
+    </button>
+    <br>
+</div>
+<div id="collapseApplication" class="collapse">
+<table class="table system-options">
+    <thead class="thead-dark">
+        <tr>            
+            <th scope="col">System UID</th>
+            <th scope="col">Name</th>        
+            <th scope="col">Description</th>
+            <th scope="col">Status</th>
+            <th scope="col">Owner</th>
+        </tr>
+    </thead>
+    <tbody>          
+        <tr>
+            <td><a href="/system_compliance_profile">000810</a></td>
+            <td>Atlassian Jira</a></td>
+            <td>Atlassian Jira Enivronment - Production</td>
+            <td>ACTIVE</td>
+            <td>Cory Tan</td>
+        </tr>              
+        <tr>
+            <td><a href="/system_compliance_profile">000627</a></td>
+            <td>Atlassian Bitbucket</td>
+            <td>R&D Atlassian Bitbucket Enivronment</td>
+            <td>ACTIVE</td>
+            <td>Amy Anderson</td>
+        </tr>
+    </tbody>
+</table>
+</div>
+<br>
+<div>
+    <button id="database" class="btn btn-primary btn-lg btn-block alt-color" data-toggle="collapse" data-target="#collapseDatabase" type="button" onclick="collapse('database', 'DATABASES')">DATABASES
+        <!-- <span class="caret"></span> -->
+    </button>
+    <br>
+</div>
+<div id="collapseDatabase" class="collapse">
+<table class="table system-options">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">UID</th>
+            <th scope="col">Name</th>        
+            <th scope="col">Description</th>
+            <th scope="col">Status</th>
+            <th scope="col">Owner</th>
+        </tr>
+    </thead>
+    <tbody>          
+        <tr>
+            <td><a href="/system_compliance_profile">000456</a></td>
+            <td>TRNNQTPROD</td>
+            <td>Oracle SQL DB for Atlassian Jira Enivronment</td>
+            <td>ACTIVE</td>
+            <td>Timothy Smith</td>
+        </tr>              
+        <tr>
+            <td><a href="/system_compliance_profile">000423</a></td>
+            <td>QNTTCCPROD</td>
+            <td>Oracle SQL DB for Atlassian Bitbucket Enivronment</td>
+            <td>ACTIVE</td>
+            <td>Timothy Smith</td>
+        </tr>
+    </tbody>
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,165 @@
+{% extends 'user/base.html' %}
+{% load static %}
+{% load custom_tags %}
+
+{% block title %}CONTROL_SELECTION{% endblock %}
+
+
+{% block content %}
+{% block scripts %}
+  <script src="{% static 'js/system_compliance_profile.js' %}"></script>
+{% endblock %}
+
+<div class="system-compliance-profile">
+    <div class="row">
+        <div class="col-2 system-data">
+            <div class="row profile-data-row">
+                <div class="system-control-data">
+                    <h4>Compliance Percentage:</h4>                
+                    <p class="profile-label">Compliant: </p>
+                    <p><span id="ctr_compliant">0</span>/1189 (0%)</p>              
+                    <p class="profile-label">Not Compliant: </p>
+                    <p><span id="ctr_not_compliant">0</span>/1189 (0%)</p>         
+                    <p class="profile-label">Not Applicable: </p>
+                    <p><span id="ctr_not_applicable">0</span>/1189 (0%)</p>
+                    <p class="profile-label">Not Reviewed: </p>
+                    <p><span id="ctr_not_reviewed">1189</span>/1189 (100%)</p>  
+                </div>
+                <div class="system-control-data" style="padding: 20px 0px; font-weight: bold;">
+                    <hr>  
+                </div>
+                <div class="system-control-data">
+                    <h4>System Information:</h4>                
+                    <p><span class="profile-label">System UID: </span>000111</p>  
+                    <p><span class="profile-label">System Name: </span>SRV08991</p> 
+                    <p><span class="profile-label">Operating System: </span>Linux (RHEL)</p> 
+                    <p><span class="profile-label">Status: </span>Active</p> 
+                    <p><span class="profile-label">Description: </span>Holds the QNTTCCPROD DB</p> 
+                    <p><span class="profile-label">Owner: </span>Jeffrey Wilkins</p> 
+                    <p><span class="profile-label">Alternate Points of Contact: </span>None</p> 
+                </div>
+            </div>
+        </div>
+        <div class="col-4 system-data">    
+            <div class="row profile-data-row system_controls_table">
+                <table class="table">
+                    <thead class="thead-dark scroll-block">
+                        <tr>
+                            <th scope="col">Control Identifier</th>
+                            <th scope="col">CMMC Level</th>
+                            <th scope="col">Applicable Systems</th>
+                            <th scope="col">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody class="scroll-y" style="background-color: white;">
+                        {% for x in controls %}
+                            <tr onclick="control_select('{{ x.control_id }}')">
+                                <td id="{{ x.control_id }}_id">{{ x.control_id }} {{ x.control_name }}</td>
+                                <td>{{ x.cmmc_level }}</td>
+                                <td>{{ x.applicable_systems|semi_colon_space}}</td>
+                                <td id="{{ x.control_id }}_status">Not Reviewed</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-5 system-data">
+            <div class="row profile-data-row" id="AC-1">
+                <div class="system-control-data">
+                    <h4>AC-1: POLICY AND PROCEDURES</h4>
+                </div>
+        
+                <div class="system-control-data" style="margin-bottom: 15px;">
+                    <span class="profile-label">Compliance Status:</span>
+                    <select class="form-select" id="compliance_status" onchange="change_per()">
+                        <option value="NR">Not Reviewed</option>
+                        <option value="C">Compliant</option>
+                        <option value="NC">Not Compliant</option>
+                        <option value="NA">Not Applicable</option>
+                    </select>
+                </div>
+                
+                <div class="system-control-data">
+                    <p class="profile-label">Company Guidance:</p>
+                    <p>Test</p>
+                </div>
+                
+                
+                <div class="system-control-data">
+                    <p class="profile-label">System Specific Guidance:</p>
+                    <p>None</p>
+                </div>
+                
+                <div class="system-control-data">            
+                    <p class="profile-label">Common Procedure/Process:</p>
+                    <p>None</p>         
+                </div>
+
+                <div class="system-control-data">            
+                    <p class="profile-label">Common Templates:</p>
+                    <p>None</p>
+                </div>
+
+                <div class="system-control-data">
+                    <p class="profile-label">Notes:</p>
+                    <textarea rows="12" cols="100"></textarea>
+                </div>
+
+                <div class="system-control-data">
+                    <p class="profile-label">Artifact Upload:</p>
+                    <input type="file" id="myfile" name="myfile">
+                </div>
+            </div>  
+            <div class="row profile-data-row" style="display: none;" id="AC-10">
+                <div class="system-control-data">
+                    <h4>AC-10: CONCURRENT SESSION CONTROL</h4>
+                </div>
+        
+                <div class="system-control-data" style="margin-bottom: 15px;">
+                    <span class="profile-label">Compliance Status:</span>
+                    <select class="form-select">
+                        <option>Not Reviewd</option>
+                        <option>Compliant</option>
+                        <option>Not Compliant</option>
+                        <option>Not Applicable</option>
+                    </select>
+                </div>
+                
+                <div class="system-control-data">
+                    <p class="profile-label">Company Guidance:</p>
+                    <p></p>
+                </div>
+                
+                
+                <div class="system-control-data">
+                    <p class="profile-label">System Specific Guidance:</p>
+                    <p>Verify the operating system limits the number of concurrent sessions to ten for all accounts and/or account types. If it does not, this is a finding. </p>
+                    <p>Operating system management includes the ability to control the number of users and user sessions that utilize an operating system. Limiting the number of allowed users and sessions per user is helpful in reducing the risks related to DoS attacks.</p>
+                </div>
+                
+                <div class="system-control-data">            
+                    <p class="profile-label">Common Procedure/Process:</p>
+                    <p>None</p>         
+                </div>
+
+                <div class="system-control-data">            
+                    <p class="profile-label">Common Templates:</p>
+                    <p>None</p>
+                </div>
+
+                <div class="system-control-data">
+                    <p class="profile-label">Notes:</p>
+                    <textarea rows="12" cols="80"></textarea>
+                </div>
+
+                <div class="system-control-data">
+                    <p class="profile-label">Artifact Upload:</p>
+                    <input type="file" id="myfile" name="myfile">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

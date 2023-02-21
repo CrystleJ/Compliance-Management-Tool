@@ -38,6 +38,16 @@ def get_controls(request):
   }
   return HttpResponse(template.render(context, request))
 
+
+def get_controls_system_profile(request):
+  control_data = NIST_53_Controls.objects.all().values()
+  template = loader.get_template('user/system_compliance_profile.html')
+
+  context = {
+    'controls': control_data,
+  }
+  return HttpResponse(template.render(context, request))
+
 def create_company_profile(request):
   form = CreateCompanyProfileForm(request.POST or None)
   if form.is_valid():
