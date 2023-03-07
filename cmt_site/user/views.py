@@ -5,11 +5,11 @@ from django.views.generic.edit import CreateView
 import os, json
 
 from django.contrib.admin.views.decorators import staff_member_required
-from django.db.models import Count, F, Sum, Avg
+from django.db.models import Count, F, Sum, Avg, Q
 from django.db.models.functions import ExtractYear, ExtractMonth
 from django.http import JsonResponse
 from user.models import *
-from user.forms import CreateCompanyProfileForm
+from user.forms import *
 
 # Create your views here.
 # def dashboard(request):
@@ -40,7 +40,17 @@ def get_controls(request):
 
 
 def get_controls_system_profile(request):
-  control_data = NIST_53_Controls.objects.all().values()
+  # control_data = NIST_53_Controls.objects.all().values()
+  control_data = NIST_53_Controls.objects.filter(
+    Q(control_id="AC-1") |Q(control_id="AC-10") |Q(control_id="AC-5") |
+    Q(control_id="AC-6") |Q(control_id="AT-2") |Q(control_id="AU-2") |    
+    Q(control_id="AU-3") |Q(control_id="AU-6") |Q(control_id="CM-2") |
+    Q(control_id="CM-8") |Q(control_id="CP-9") |Q(control_id="CP-10") |
+    Q(control_id="IA-2") |Q(control_id="IA-5") |Q(control_id="PS-4") |
+    Q(control_id="PS-5") |Q(control_id="RA-3") |Q(control_id="RA-5") |
+    Q(control_id="SC-23") | Q(control_id="SI-10")
+  )
+
   template = loader.get_template('user/system_compliance_profile.html')
 
   context = {
@@ -55,6 +65,13 @@ def create_company_profile(request):
       instance.save()
   return render(request,'user/create_profile.html',{'form':form})
 
+
+def update_company_profile(request):
+  form = UpdateCompanyProfileForm(request.POST or None)
+  if form.is_valid():
+      instance = form.save(commit=False)
+      instance.save()
+  return render(request,'user/update_profile.html',{'form':form})
 # Charts
 # https://django-simple-charts.appseed.us/charts-file
 # https://github.com/app-generator/sample-django-charts-simple

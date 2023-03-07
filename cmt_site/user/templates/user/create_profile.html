@@ -6,13 +6,18 @@
 {% block title %}CONTROL_SELECTION{% endblock %}
 
 {% block content %}
+{% block scripts %}
+  <script src="{% static 'js/create_profile.js' %}"></script>
+{% endblock %}
 <div class="d-flex justify-content-center container" id="login">
     <div class="row">
         <form method="post" class="form-group">
             {% csrf_token %}
             {{form|crispy}}
-            <br>
-            <div class="text-right">
+            <!-- <div id="group_input">
+                <input type="text"/><button type="button" class="btn btn-success btn-theme-color">ADD</button>
+            </div> -->
+            <div class="text-right" style="margin-top: 10px;">
               <button type="button" class="btn btn-success btn-theme-color" onclick="location.href='control_selection'">SUBMIT</button>
             </div>
         </form>

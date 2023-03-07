@@ -17,13 +17,13 @@
                 <div class="system-control-data">
                     <h4>Compliance Percentage:</h4>                
                     <p class="profile-label">Compliant: </p>
-                    <p><span id="ctr_compliant">0</span>/1189 (0%)</p>              
+                    <p style="color: green;"><span id="ctr_compliant">12</span>/20 (60%)</p>              
                     <p class="profile-label">Not Compliant: </p>
-                    <p><span id="ctr_not_compliant">0</span>/1189 (0%)</p>         
+                    <p style="color: red;"><span id="ctr_not_compliant">4</span>/40 (20%)</p>         
                     <p class="profile-label">Not Applicable: </p>
-                    <p><span id="ctr_not_applicable">0</span>/1189 (0%)</p>
+                    <p><span id="ctr_not_applicable">2</span>/20 (10%)</p>
                     <p class="profile-label">Not Reviewed: </p>
-                    <p><span id="ctr_not_reviewed">1189</span>/1189 (100%)</p>  
+                    <p style="color: red;"><span id="ctr_not_reviewed">2</span>/20 (10%)</p>  
                 </div>
                 <div class="system-control-data" style="padding: 20px 0px; font-weight: bold;">
                     <hr>  
@@ -53,11 +53,11 @@
                     </thead>
                     <tbody class="scroll-y" style="background-color: white;">
                         {% for x in controls %}
-                            <tr onclick="control_select('{{ x.control_id }}')">
+                            <tr id="{{ x.control_id }}_row" onclick="control_select('{{ x.control_id }}')">
                                 <td id="{{ x.control_id }}_id">{{ x.control_id }} {{ x.control_name }}</td>
                                 <td>{{ x.cmmc_level }}</td>
                                 <td>{{ x.applicable_systems|semi_colon_space}}</td>
-                                <td id="{{ x.control_id }}_status">Not Reviewed</td>
+                                <td id="{{ x.control_id }}_status">{%get_review_status x.control_id %}</td>
                             </tr>
                         {% endfor %}
                     </tbody>
@@ -119,9 +119,9 @@
                 <div class="system-control-data" style="margin-bottom: 15px;">
                     <span class="profile-label">Compliance Status:</span>
                     <select class="form-select">
-                        <option>Not Reviewd</option>
+                        <option>Not Reviewed</option>
                         <option>Compliant</option>
-                        <option>Not Compliant</option>
+                        <option selected>Not Compliant</option>
                         <option>Not Applicable</option>
                     </select>
                 </div>
@@ -136,21 +136,22 @@
                     <p class="profile-label">System Specific Guidance:</p>
                     <p>Verify the operating system limits the number of concurrent sessions to ten for all accounts and/or account types. If it does not, this is a finding. </p>
                     <p>Operating system management includes the ability to control the number of users and user sessions that utilize an operating system. Limiting the number of allowed users and sessions per user is helpful in reducing the risks related to DoS attacks.</p>
+                    <p>EXTRA GUIDANCE</p>
                 </div>
                 
                 <div class="system-control-data">            
                     <p class="profile-label">Common Procedure/Process:</p>
-                    <p>None</p>         
+                    <p cass="btn_link">process.docx   [<span class="btn_link">Download</span>]</p>       
                 </div>
 
                 <div class="system-control-data">            
                     <p class="profile-label">Common Templates:</p>
-                    <p>None</p>
+                    <p>sample_template.xls   [<span class="btn_link">Download</span>]</p>      
                 </div>
 
                 <div class="system-control-data">
                     <p class="profile-label">Notes:</p>
-                    <textarea rows="12" cols="80"></textarea>
+                    <textarea rows="12" cols="80">Will be implement by end of first quarter.</textarea>
                 </div>
 
                 <div class="system-control-data">

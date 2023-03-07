@@ -35,5 +35,6 @@ class NIST_53_Controls(models.Model):
 
 class Company_Profile(models.Model):
     name = models.CharField(max_length=130)
-    systems = ArrayField(models.CharField(max_length=200), null=True, blank=True)
     certification_requirements = ArrayField(models.CharField(max_length=200), null=True, blank=True)
+    groups = ArrayField(models.CharField(max_length=200), null=True, blank=True)
+    systems = ArrayField(models.CharField(max_length=200), null=True, blank=True)

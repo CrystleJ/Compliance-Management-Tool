@@ -141,6 +141,7 @@ label {
 
 .system-compliance-profile {
     width: 107%;
+    margin-top: -20px;
 }
 
 .system-data {
@@ -163,6 +164,19 @@ select:hover,
 input:hover,
 .system_controls_table:hover{
     cursor: pointer;
+}
+
+.btn_link {
+    background: none!important;
+    border: none;
+    padding: 0!important;
+    color: #069;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+input:hover{
+    cursor: text;
 }
 
 /* table .scroll-y { height: 800px; overflow-y:scroll; display:block; }

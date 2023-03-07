@@ -8,9 +8,12 @@
 
 {% block scripts %}
   <script src="{% static 'js/control_guidance.js' %}"></script>
+  <script src="{% static 'js/multi_page_modal.js' %}"></script>
 {% endblock %}
 <form>
-<table class="table">
+  
+<button type="button" class="btn btn-success btn-theme-color" onclick="location.href='/'">SAVE</button>
+<table class="table" style="margin-top: 10px;">
     <thead class="thead-dark">
       <tr>
         <th scope="col">Control Name</th>
@@ -42,7 +45,7 @@
             <td>{%get_recommendation x.cmmc_level x.applicable_systems %}</td>
             <td>
               <button type="button" class="btn btn-success btn-theme-color open-my-modal" id="add_guidance" data-toggle="modal" data-target="#guidance_modal" 
-              data-control-id="{{ x.control_id }}" data-control-txt="{{ x.control_txt }}" data-discussion="{{ x.discussion }}" onclick="set_values(this)">ADD</button></td>
+              data-control-id="{{ x.control_id }}" data-control-txt="{{ x.control_txt }}" data-discussion="{{ x.discussion }}" onclick="set_values(this)">{% get_add_edit x.control_id %}</button></td>
         </tr>
     {% endfor %}
     </tbody>
@@ -56,25 +59,80 @@
       <div class="modal-content">
 
         <div class="modal-header">
-          <h4 class="modal-title">Add Guidance</h4>
+          <!-- <h4 class="modal-title">Add Guidance</h4> -->
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         
         <div class="modal-body">
-          <span class="guidance-modal-label">Control ID:</span>
-          <span id="modal_control_id"></span><br><br>
-          <p class="guidance-modal-label">Control Text: </p>
-          <p id="modal_control_txt"></p>
-          <p class="guidance-modal-label">Discussion: </p>
-          <p id="modal_discussion"></p>
-          <form>
-            <label class="guidance-modal-label">Company Guidance: </label><br>
-            <textarea id="guidance" name="guidance" rows="12" cols="120"></textarea>
+            <fieldset id="set_1" style="display: block;">
+              <h4 class="fs-title">General Guidance</h4>
+              <span class="guidance-modal-label">Control ID:</span>
+              <span id="modal_control_id"></span><br><br>
+              <p class="guidance-modal-label">Control Text: </p>
+              <p id="modal_control_txt"></p>
+              <p class="guidance-modal-label">Discussion: </p>
+              <p id="modal_discussion"></p>
+              <label class="guidance-modal-label">Company Guidance: </label><br>
+              <textarea id="guidance" name="guidance" rows="12" cols="120">Test</textarea>
+            </fieldset>
+            <fieldset id="set_2" style="display: none;">
+              <h4 class="fs-title">System Specific Guidance</h4>
+              <label class="guidance-modal-label">Applications: </label><br>
+              <textarea id="guidance" name="guidance" rows="4" cols="120">Application management includes the ability to control the number of sessions that utilize an application by all accounts and/or account types. Limiting the number of allowed sessions is helpful in limiting risks related to Denial of Service attacks. Application servers host and expose business logic and application processes. The application server must possess the capability to limit the maximum number of concurrent sessions in a manner that affects the entire application server or on an individual application basis. Although there is some latitude concerning the settings themselves, the settings should follow DoD-recommended values, but the settings should be configurable to allow for future DoD direction. While the DoD will specify recommended values, the values can be adjusted to accommodate the operational requirement of a given system.
+              </textarea>
+
+              <label class="guidance-modal-label">Servers: </label><br>
+              <textarea id="guidance" name="guidance" rows="4" cols="120">Verify the operating system limits the number of concurrent sessions to ten for all accounts and/or account types. If it does not, this is a finding. 
+              Operating system management includes the ability to control the number of users and user sessions that utilize an operating system. Limiting the number of allowed users and sessions per user is helpful in reducing the risks related to DoS attacks. This requirement addresses concurrent sessions for information system accounts and does not address concurrent sessions by single users via multiple system accounts. The maximum number of concurrent sessions should be defined based upon mission needs and the operational environment for each system.</textarea>
+                
+              
+              <label class="guidance-modal-label">Laptops/Desktops: </label><br>
+              <textarea id="guidance" name="guidance" rows="4" cols="120">Session management is the practice of protecting the bulk of the user authorization and identity information. Storing of this data can occur on the client system or on the server. When the session information is stored on the client, the session ID, along with the user authorization and identity information, is sent along with each client request and is stored in either a cookie, embedded in the uniform resource locator (URL), or placed in a hidden field on the displayed form. Each of these offers advantages and disadvantages. The biggest disadvantage to all three is the hijacking of a session along with all of the user's credentials. When the user authorization and identity information is stored on the server in a protected and encrypted database, the communication between the client and web server will only send the session identifier, and the server can then retrieve user credentials for the session when needed. If, during transmission, the session were to be hijacked, the user's credentials would not be compromised.
+              </textarea>
+              <label class="guidance-modal-label">Network Devices: </label><br>
+              <textarea id="guidance" name="guidance" rows="4" cols="120">Network element management includes the ability to control the number of users and user sessions that utilize a network element. Limiting the number of current sessions per user is helpful in limiting risks related to DoS attacks. This requirement addresses concurrent sessions for information system accounts and does not address concurrent sessions by single users via multiple system accounts. The maximum number of concurrent sessions must be the same as the requirements specified for the application for which it serves as intermediary. This policy only applies to application gateways/firewalls (e.g., identity management or authentication gateways) that provide user account services as part of the intermediary services.
+
+              </textarea>
+              
+              <label class="guidance-modal-label">Databases: </label><br>
+              <textarea id="guidance" name="guidance" rows="4" cols="120">Database management includes the ability to control the number of users and user sessions utilizing a DBMS. Unlimited concurrent connections to the DBMS could allow a successful Denial of Service (DoS) attack by exhausting connection resources; and a system can also fail or be degraded by an overload of legitimate users. Limiting the number of concurrent sessions per user is helpful in reducing these risks. This requirement addresses concurrent session control for a single account. It does not address concurrent sessions by a single user via multiple system accounts; and it does not deal with the total number of sessions across all accounts. The capability to limit the number of concurrent sessions per user must be configured in or added to the DBMS (for example, by use of a logon trigger), when this is technically feasible. Note that it is not sufficient to limit sessions via a web server or application server alone, because legitimate users and adversaries can potentially connect to the DBMS by other means. The organization will need to define the maximum number of concurrent sessions by account type, by account, or a combination thereof. In deciding on the appropriate number, it is important to consider the work requirements of the various types of users. For example, 2 might be an acceptable limit for general users accessing the database via an application; but 10 might be too few for a database administrator using a database management GUI tool, where each query tab and navigation pane may count as a separate session. (Sessions may also be referred to as connections or logons, which for the purposes of this requirement are synonyms.)
+
+              </textarea>
+              
+              <label class="guidance-modal-label">Containers: </label><br>
+              <textarea id="guidance" name="guidance" rows="4" cols="120"></textarea>
+              
+              <label class="guidance-modal-label">Unified Endpoint Management: </label><br>
+              <textarea id="guidance" name="guidance" rows="4" cols="120">Application management includes the ability to control the number of users and user sessions that utilize an application. Limiting the number of allowed users and sessions per user is helpful in limiting risks related to DoS attacks. This requirement may be met via the application or by utilizing information system session control provided by a web server with specialized session management capabilities. If it has been specified that this requirement will be handled by the application, the capability to limit the maximum number of concurrent single user sessions must be designed and built into the application. This requirement addresses concurrent sessions for information system accounts and does not address concurrent sessions by single users via multiple system accounts. The maximum number of concurrent sessions must be defined based upon mission needs and the operational environment for each system.  
+              </textarea>
+              
+              <label class="guidance-modal-label">RTOS: </label><br>
+              <textarea id="guidance" name="guidance" rows="4" cols="120"></textarea>
+            </fieldset>
+            <fieldset id="set_3" style="display: none;">
+                <h4 class="fs-title">Reference Documents</h4>
+                <p>Templates or Common Standards/Processes/Procedures</p>
+                <label class="guidance-modal-label">Common Templates</label>
+                <span cass="btn_link">sample_template.xls</span>     [<span class="btn_link" style="color: red;">Remove</span>]<br>
+                <input style="margin: 10px 0px;" type="file"/><br>
+
+                <label class="guidance-modal-label">Common Procedure/Process</label>
+                <span cass="btn_link">process.docx</span>     [<span class="btn_link" style="color: red;">Remove</span>]<br>
+                <input style="margin-top: 10px;" type="file"/>
+            </fieldset>
           </form>
         </div>
         
         <div class="modal-footer">
-          <button type="button" class="btn btn-success btn-theme-color" data-dismiss="modal">SAVE</button>
+          <div class="text-left">
+            <button type="button" id="btn_remove" class="btn btn-success btn-theme-color" style="background-color: red;">REMOVE</button>
+          </div>
+
+          <button type="button" id="btn_back" class="btn btn-success btn-theme-color" style="display: none;">< BACK</button>
+
+          <button type="button" id="btn_next_1" class="btn btn-success btn-theme-color" onclick="show_field('set_2', 'btn_next_2')">NEXT ></button>
+          <button type="button" id="btn_next_2" class="btn btn-success btn-theme-color" onclick="show_field('set_3', 'btn_save')" style="display: none;">NEXT ></button>
+          <button type="button" id="btn_save" class="btn btn-success btn-theme-color" data-dismiss="modal" style="display: none;">SAVE</button>
         </div>
         
       </div>
