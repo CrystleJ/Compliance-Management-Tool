@@ -66,7 +66,7 @@ class UpdateCompanyProfileForm(forms.ModelForm):
         required = True
     )
 
-    name = forms.CharField(required = True, label = '<br />Company Name:', initial='Test')
+    name = forms.CharField(required = True, label = '<br />Company Name:', initial='Vaporware')
 
     groups_bool = [('Yes','Yes'), ('No','No')]
     groups  = forms.ChoiceField(

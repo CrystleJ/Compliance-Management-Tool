@@ -5,15 +5,15 @@ function change_per() {
         document.getElementById("ctr_not_applicable").innerHTML = '0';
         document.getElementById("ctr_not_reviewed").innerHTML = '1189';
 
-        document.getElementById("AC-1_status").innerHTML = "Not Reviewed";
+        document.getElementById("AC-10_status").innerHTML = "Not Reviewed";
 
     } else if(document.getElementById("compliance_status").value == "C") {
-        document.getElementById("ctr_compliant").innerHTML = '1';
-        document.getElementById("ctr_not_compliant").innerHTML = '0';
-        document.getElementById("ctr_not_applicable").innerHTML = '0';
-        document.getElementById("ctr_not_reviewed").innerHTML = '1179';
+        document.getElementById("ctr_compliant").innerHTML = '13/20 (65%)';
+        document.getElementById("ctr_not_compliant").innerHTML = '3/20 (15%)';
+        document.getElementById("ctr_not_applicable").innerHTML = '2/20 (10%)';
+        document.getElementById("ctr_not_reviewed").innerHTML = '2/20 (10%)';
 
-        document.getElementById("AC-1_status").innerHTML = "Compliant";
+        document.getElementById("AC-10_status").innerHTML = "Compliant";
 
     } else if(document.getElementById("compliance_status").value == "NC") {
         document.getElementById("ctr_compliant").innerHTML = '0';
@@ -21,14 +21,14 @@ function change_per() {
         document.getElementById("ctr_not_applicable").innerHTML = '0';
         document.getElementById("ctr_not_reviewed").innerHTML = '1179';
 
-        document.getElementById("AC-1_status").innerHTML = "Not Compliant";
+        document.getElementById("AC-10_status").innerHTML = "Not Compliant";
     } else {
         document.getElementById("ctr_compliant").innerHTML = '0';
         document.getElementById("ctr_not_compliant").innerHTML = '0';
         document.getElementById("ctr_not_applicable").innerHTML = '1';
         document.getElementById("ctr_not_reviewed").innerHTML = '1179';
 
-        document.getElementById("AC-1_status").innerHTML = "Not Applicable";
+        document.getElementById("AC-10_status").innerHTML = "Not Applicable";
     }
 }
 

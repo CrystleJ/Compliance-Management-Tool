@@ -179,6 +179,23 @@ input:hover{
     cursor: text;
 }
 
+.qa_bold {
+    font-weight: bold;
+}
+
+.post_info {
+    font-style: italic;
+    color: grey;
+}
+
+.answered_info {
+    float: right;
+}
+
+.prior_q {
+    padding: 20px;
+}
+
 /* table .scroll-y { height: 800px; overflow-y:scroll; display:block; }
 table .scroll-block { display:block; } */
 

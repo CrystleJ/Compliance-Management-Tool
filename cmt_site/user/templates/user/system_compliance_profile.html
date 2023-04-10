@@ -17,13 +17,13 @@
                 <div class="system-control-data">
                     <h4>Compliance Percentage:</h4>                
                     <p class="profile-label">Compliant: </p>
-                    <p style="color: green;"><span id="ctr_compliant">12</span>/20 (60%)</p>              
+                    <p style="color: green;"><span id="ctr_compliant">12/20 (60%)</span></p>              
                     <p class="profile-label">Not Compliant: </p>
-                    <p style="color: red;"><span id="ctr_not_compliant">4</span>/40 (20%)</p>         
+                    <p style="color: red;"><span id="ctr_not_compliant">4/20 (20%)</span></p>         
                     <p class="profile-label">Not Applicable: </p>
-                    <p><span id="ctr_not_applicable">2</span>/20 (10%)</p>
+                    <p><span id="ctr_not_applicable">2/20 (10%)</span></p>
                     <p class="profile-label">Not Reviewed: </p>
-                    <p style="color: red;"><span id="ctr_not_reviewed">2</span>/20 (10%)</p>  
+                    <p style="color: red;"><span id="ctr_not_reviewed">2/20 (10%)</span></p>  
                 </div>
                 <div class="system-control-data" style="padding: 20px 0px; font-weight: bold;">
                     <hr>  
@@ -67,7 +67,45 @@
         <div class="col-5 system-data">
             <div class="row profile-data-row" id="AC-1">
                 <div class="system-control-data">
-                    <h4>AC-1: POLICY AND PROCEDURES</h4>
+                    <h4>AC-1: POLICY AND PROCEDURES<button class="btn btn-success btn-theme-color-opp" onclick="window.location.href='control_qa'" style="margin-left: 340px">NEED CLARIFICATION?</button></h4>
+                    
+                </div>
+        
+                <div class="system-control-data" style="margin-bottom: 15px;">
+                    <span class="profile-label">Compliance Status:</span>
+                    <select class="form-select" >
+                        <option value="NR">Not Reviewed</option>
+                        <option value="C">Compliant</option>
+                        <option value="NC">Not Compliant</option>
+                        <option value="NA" selected>Not Applicable</option>
+                    </select>
+                </div>
+                
+                <div class="system-control-data">
+                    <p class="profile-label">Company Guidance:</p>
+                    <p>Access control policy and procedures address the controls in the AC family that are implemented within systems and organizations. The risk management strategy is an important factor in establishing such policies and procedures. Policies and procedures contribute to security and privacy assurance. Therefore, it is important that security and privacy programs collaborate on the development of access control policy and procedures. Security and privacy program policies and procedures at the organization level are preferable, in general, and may obviate the need for mission- or system-specific policies and procedures. The policy can be included as part of the general security and privacy policy or be represented by multiple policies reflecting the complex nature of organizations. Procedures can be established for security and privacy programs, for mission or business processes, and for systems, if needed. Procedures describe how the policies or controls are implemented and can be directed at the individual or role that is the object of the procedure. Procedures can be documented in system security and privacy plans or in one or more separate documents. Events that may precipitate an update to access control policy and procedures include assessment or audit findings, security incidents or breaches, or changes in laws, executive orders, directives, regulations, policies, standards, and guidelines. Simply restating controls does not constitute an organizational policy or procedure.</p>
+                </div>
+                
+                
+                <div class="system-control-data">
+                    <p class="profile-label">System Specific Guidance:</p>
+                    <p>N/A - Inherited from Inc.</p>
+                </div>
+                
+                <div class="system-control-data">            
+                    <p class="profile-label">Common Procedure/Process:</p>
+                    <p>N/A</p>         
+                </div>
+
+                <div class="system-control-data">            
+                    <p class="profile-label">Common Templates:</p>
+                    <p>N/A</p>
+                </div>
+            </div>  
+            <div class="row profile-data-row" style="display: none;" id="AC-10">
+                <div class="system-control-data">
+                    <h4>AC-10: CONCURRENT SESSION CONTROL<button class="btn btn-success btn-theme-color-opp" onclick="window.location.href='control_qa'" style="margin-left: 230px">NEED CLARIFICATION?</button></h4>
+                    
                 </div>
         
                 <div class="system-control-data" style="margin-bottom: 15px;">
@@ -75,60 +113,14 @@
                     <select class="form-select" id="compliance_status" onchange="change_per()">
                         <option value="NR">Not Reviewed</option>
                         <option value="C">Compliant</option>
-                        <option value="NC">Not Compliant</option>
-                        <option value="NA">Not Applicable</option>
+                        <option value="NC" selected>Not Compliant</option>
+                        <option value="NA" >Not Applicable</option>
                     </select>
                 </div>
                 
                 <div class="system-control-data">
                     <p class="profile-label">Company Guidance:</p>
-                    <p>Test</p>
-                </div>
-                
-                
-                <div class="system-control-data">
-                    <p class="profile-label">System Specific Guidance:</p>
-                    <p>None</p>
-                </div>
-                
-                <div class="system-control-data">            
-                    <p class="profile-label">Common Procedure/Process:</p>
-                    <p>None</p>         
-                </div>
-
-                <div class="system-control-data">            
-                    <p class="profile-label">Common Templates:</p>
-                    <p>None</p>
-                </div>
-
-                <div class="system-control-data">
-                    <p class="profile-label">Notes:</p>
-                    <textarea rows="12" cols="100"></textarea>
-                </div>
-
-                <div class="system-control-data">
-                    <p class="profile-label">Artifact Upload:</p>
-                    <input type="file" id="myfile" name="myfile">
-                </div>
-            </div>  
-            <div class="row profile-data-row" style="display: none;" id="AC-10">
-                <div class="system-control-data">
-                    <h4>AC-10: CONCURRENT SESSION CONTROL</h4>
-                </div>
-        
-                <div class="system-control-data" style="margin-bottom: 15px;">
-                    <span class="profile-label">Compliance Status:</span>
-                    <select class="form-select">
-                        <option>Not Reviewed</option>
-                        <option>Compliant</option>
-                        <option selected>Not Compliant</option>
-                        <option>Not Applicable</option>
-                    </select>
-                </div>
-                
-                <div class="system-control-data">
-                    <p class="profile-label">Company Guidance:</p>
-                    <p></p>
+                    <p>Sensitive systems should limit the number of conccurent sessions, defined based on the type of system (reference System Specific Guidance). This control addresses concurrent sessions for information system accounts and does not address concurrent sessions by single users via multiple system accounts.</p>
                 </div>
                 
                 
@@ -136,7 +128,7 @@
                     <p class="profile-label">System Specific Guidance:</p>
                     <p>Verify the operating system limits the number of concurrent sessions to ten for all accounts and/or account types. If it does not, this is a finding. </p>
                     <p>Operating system management includes the ability to control the number of users and user sessions that utilize an operating system. Limiting the number of allowed users and sessions per user is helpful in reducing the risks related to DoS attacks.</p>
-                    <p>EXTRA GUIDANCE</p>
+                    <!-- <p>EXTRA GUIDANCE</p> -->
                 </div>
                 
                 <div class="system-control-data">            
